@@ -47,16 +47,16 @@ class EditFoodView extends GetView<AdminController> {
               //     });
               //   },
               // ),
-              AdminTextField(label: 'Nama Makanan'),
-              AdminTextField(label: 'Bahan'),
-              AdminTextField(label: 'Kategori'),
+              const AdminTextField(label: 'Nama Makanan'),
+              const AdminTextField(label: 'Bahan'),
+              const AdminTextField(label: 'Kategori'),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Ubah'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     fixedSize: Size(Get.width, 40)),
+                child: const Text('Ubah'),
               ),
             ],
           ),

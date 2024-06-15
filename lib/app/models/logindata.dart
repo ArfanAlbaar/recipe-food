@@ -10,7 +10,7 @@ String logindataToJson(Logindata data) => json.encode(data.toJson());
 
 class Logindata {
   String username;
-  int password;
+  String password;
 
   Logindata({
     required this.username,

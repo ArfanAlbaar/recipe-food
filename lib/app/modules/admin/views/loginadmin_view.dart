@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:foodrecipeapp/app/modules/admin/controllers/admin_controller.dart';
 import 'package:foodrecipeapp/app/widgets/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../controllers/login_controller.dart';
+import '../../../routes/app_pages.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class LoginAdminView extends GetView<AdminController> {
+  const LoginAdminView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final LoginController loginController = LoginController();
+     // Check if already logged in
+    if (controller.isLoggedIn.value) {
+      // Redirect to admin page
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Get.offNamed(Routes.ADMIN);
+      });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -22,7 +30,8 @@ class LoginView extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Selamat Datang",
+                "Selamat Datang Sang ADMINISTRATOR ",
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -31,7 +40,8 @@ class LoginView extends GetView<LoginController> {
               ),
               const SizedBox(height: 10),
               Text(
-                "Silakan login",
+                "Silahkan Login Menggunakan Akun Administrator Masing-masing",
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   color: Colors.grey[700],
@@ -78,7 +88,7 @@ class LoginView extends GetView<LoginController> {
                   onPressed: () {
                     String username = usernameController.text.trim();
                     String password = passwordController.text.trim();
-                    loginController.loginUser(context, username, password);
+                    controller.loginAdmin(username, password);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: hijauSage,
@@ -98,18 +108,6 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               const SizedBox(height: 20),
-              TextButton(
-                onPressed: () {
-                  // Implement navigation to registration page if needed
-                },
-                child: Text(
-                  "Don't have an account? Sign Up",
-                  style: GoogleFonts.poppins(
-                    color: Colors.teal,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
             ],
           ),
         ),

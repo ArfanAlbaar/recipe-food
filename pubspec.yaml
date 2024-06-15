@@ -11,10 +11,15 @@ dependencies:
     sdk: flutter
   fluttertoast: ^8.2.0
   get: 4.6.6
+  get_storage: 2.0.3
+
   google_fonts: 6.1.0
   iconsax: 0.0.8
   pdf: ^3.10.8
-  printing: ^5.12.0
+  # printing: ^5.12.0
+  flutter_svg: 2.0.10+1 # New dependency added
+  http: ^1.2.1
+  logger: ^2.3.0
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"

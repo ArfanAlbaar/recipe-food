@@ -1,20 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:foodrecipeapp/app/routes/app_pages.dart';
-
+import 'package:foodrecipeapp/user_service.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  final TextEditingController emailController = TextEditingController();
+  final UserService userService = UserService();
+
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  login() {
-    String emailc = emailController.text.trim();
-    String passwordc = passwordController.text.trim();
+  static String apiToken = "";
+  bool isLoggedIn = false; // Add this variable
 
-    if (emailc == "admin@gmail.com" && passwordc == "123") {
-      return Get.offAllNamed(Routes.ADMIN);
-    } else if (emailc == "fikri@gmail.com" && passwordc == "123") {
-      return Get.offAllNamed(Routes.HOME);
+  //LOGIN
+  Future<void> loginUser(
+      BuildContext context, String username, String password) async {
+    try {
+      if (apiToken != "") {
+        Get.snackbar("HEY", "YOU ALREADY LOGGED IN");
+        return Get.offAllNamed(Routes.ADMIN);
+      } else if (apiToken == "") {
+        String token = await userService.loginUser(username, password);
+        apiToken = token;
+        print('Token: $token');
+        isLoggedIn = true; // Update login status
+        Get.offAllNamed(Routes.ADMIN);
+      }
+    } catch (e) {
+      // Handle error
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Login Error'),
+            content: Text('Failed to login. Please check your credentials.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  } //END LOGIN
+
+  //LOGOUT
+  Future<void> logoutUser() async {
+    try {
+      print('token logout: $apiToken');
+
+      if (apiToken == null) {
+        Get.offAllNamed(Routes.LOGIN);
+        throw Exception('Kamu belum login');
+      }
+
+      await userService.logoutUser(apiToken);
+      apiToken = "";
+      print('Token: $apiToken');
+      isLoggedIn = false; // Update login status
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      print('Error logging out: $e');
     }
   }
 }

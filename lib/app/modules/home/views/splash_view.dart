@@ -69,7 +69,7 @@ class SplashScreen extends StatelessWidget {
                 const SizedBox(height: 40),
                 GestureDetector(
                   onTap: () {
-                    Get.offAllNamed(Routes.LOGIN);
+                    Get.offAllNamed(Routes.HOME);
                   },
                   child: Container(
                     height: 66,

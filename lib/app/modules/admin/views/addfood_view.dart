@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -44,7 +43,7 @@ class AdminAddFood extends GetView<AdminController> {
   //       snackPosition: SnackPosition.BOTTOM);
   // }
 
-  AdminAddFood({Key? key}) : super(key: key);
+  const AdminAddFood({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,16 +59,16 @@ class AdminAddFood extends GetView<AdminController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              AdminTextField(label: 'Nama Makanan'),
-              AdminTextField(label: 'Bahan'),
-              AdminTextField(label: 'Kategori'),
+              const AdminTextField(label: 'Nama Makanan'),
+              const AdminTextField(label: 'Bahan'),
+              const AdminTextField(label: 'Kategori'),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Tambah'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     fixedSize: Size(Get.width, 40)),
+                child: const Text('Tambah'),
               ),
             ],
           ),
@@ -85,10 +84,11 @@ class AdminTextField extends StatelessWidget {
   final TextInputType? keyboardType;
 
   const AdminTextField({
+    Key? key,
     this.controller,
     this.label,
     this.keyboardType = TextInputType.text,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

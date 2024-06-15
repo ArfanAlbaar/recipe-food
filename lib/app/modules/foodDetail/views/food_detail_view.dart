@@ -106,13 +106,10 @@
 //
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:iconsax/iconsax.dart';
-import 'package:printing/printing.dart';
-import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import '../../../models/makanan.dart';
 import '../../../widgets/colors.dart';
@@ -120,7 +117,7 @@ import '../controllers/food_detail_controller.dart';
 
 class FoodDetailView extends GetView<FoodDetailController> {
   final Food? food;
-  const FoodDetailView({Key? key, this.food}) : super(key: key);
+  const FoodDetailView({super.key, this.food});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,7 +132,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Iconsax.printer),
+            icon: const Icon(Iconsax.printer),
             onPressed: () {
               printFood(food!);
             },
@@ -221,15 +218,15 @@ void printFood(Food food) {
       build: (pw.Context context) {
         return pw.Column(
           children: [
-            pw.Text(food.name, style: pw.TextStyle(fontSize: 24)),
+            pw.Text(food.name, style: const pw.TextStyle(fontSize: 24)),
             pw.SizedBox(height: 10),
             pw.Text('Kalori: ${food.cal} kcal'),
             pw.Text('Waktu: ${food.time} menit'),
             pw.SizedBox(height: 10),
-            pw.Text('Resep:', style: pw.TextStyle(fontSize: 20)),
+            pw.Text('Resep:', style: const pw.TextStyle(fontSize: 20)),
             pw.Text(food.recipe),
             pw.SizedBox(height: 10),
-            pw.Text('Cara Pembuatan:', style: pw.TextStyle(fontSize: 20)),
+            pw.Text('Cara Pembuatan:', style: const pw.TextStyle(fontSize: 20)),
             pw.Text(food.preparation),
           ],
         );
@@ -237,7 +234,7 @@ void printFood(Food food) {
     ),
   );
 
-  Printing.layoutPdf(
-    onLayout: (PdfPageFormat format) async => pdf.save(),
-  );
+  // Printing.layoutPdf(
+  //   onLayout: (PdfPageFormat format) async => pdf.save(),
+  // );
 }

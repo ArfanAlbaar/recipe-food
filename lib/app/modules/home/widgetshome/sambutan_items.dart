@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:foodrecipeapp/app/routes/app_pages.dart';
+import 'package:get/get.dart';
 // import 'package:foodrecipeapp/app/modules/home/widgetshome/tableAnggota.dart';
 // import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,7 +28,9 @@ class Sambutan extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.offAllNamed(Routes.CHOOSELOGIN);
+            },
             icon: Icon(
               Iconsax.notification,
             ),

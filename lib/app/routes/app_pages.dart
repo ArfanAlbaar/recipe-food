@@ -1,6 +1,9 @@
+import 'package:foodrecipeapp/app/modules/admin/views/loginadmin_view.dart';
+import 'package:foodrecipeapp/app/modules/home/views/choose_login.dart';
 import 'package:get/get.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/controllers/authadmin_middleware.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/foodDetail/bindings/food_detail_binding.dart';
 import '../modules/foodDetail/views/food_detail_view.dart';
@@ -31,7 +34,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FOOD_DETAIL,
-      page: () => FoodDetailView(),
+      page: () => const FoodDetailView(),
       binding: FoodDetailBinding(),
     ),
     GetPage(
@@ -40,8 +43,18 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.ADMIN,
-      page: () => const AdminView(),
+        name: _Paths.ADMIN,
+        page: () => const AdminView(),
+        binding: AdminBinding(),
+        middlewares: [AuthAdminMiddleware()]),
+    GetPage(
+      name: _Paths.CHOOSELOGIN,
+      page: () => const ChooseLogin(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGINADMIN,
+      page: () => const LoginAdminView(),
       binding: AdminBinding(),
     ),
   ];

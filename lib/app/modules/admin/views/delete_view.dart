@@ -41,8 +41,8 @@ class DeleteFoodView extends GetView<AdminController> {
                 // Implement logic to delete the selected food item
                 // You can call deleteFood(food) here with the selected food item
               },
-              child: Text('Hapus'),
-              style: ElevatedButton.styleFrom(primary: Colors.teal),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              child: const Text('Hapus'),
             ),
           ],
         ),

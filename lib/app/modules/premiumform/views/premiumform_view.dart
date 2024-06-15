@@ -5,11 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/premiumform_controller.dart';
 
 class PremiumformView extends GetView<PremiumformController> {
-  const PremiumformView({Key? key}) : super(key: key);
+  const PremiumformView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class PremiumformView extends GetView<PremiumformController> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -44,7 +44,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: controller.firstNameController,
                       decoration: InputDecoration(
@@ -53,7 +53,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -62,7 +62,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: controller.lastNameController,
                       decoration: InputDecoration(
@@ -71,7 +71,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -80,7 +80,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: controller.emailController,
                       decoration: InputDecoration(
@@ -89,7 +89,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.email),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -98,7 +98,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: controller.phoneController,
                       decoration: InputDecoration(
@@ -107,7 +107,7 @@ class PremiumformView extends GetView<PremiumformController> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.phone),
+                        prefixIcon: const Icon(Icons.phone),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -116,13 +116,13 @@ class PremiumformView extends GetView<PremiumformController> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               Get.snackbar(
                                 "Berhasil",
                                 "Data anda berhasil disimpan",
@@ -137,7 +137,7 @@ class PremiumformView extends GetView<PremiumformController> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: hijauSage,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -153,7 +153,7 @@ class PremiumformView extends GetView<PremiumformController> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: hijauSage,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
