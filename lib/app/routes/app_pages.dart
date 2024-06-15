@@ -1,18 +1,17 @@
 import 'package:foodrecipeapp/app/modules/admin/views/loginadmin_view.dart';
 import 'package:foodrecipeapp/app/modules/home/views/choose_login.dart';
+import 'package:foodrecipeapp/app/modules/member/views/member_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
-import '../modules/admin/controllers/authadmin_middleware.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/foodDetail/bindings/food_detail_binding.dart';
 import '../modules/foodDetail/views/food_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
-import '../modules/premiumform/bindings/premiumform_binding.dart';
-import '../modules/premiumform/views/premiumform_view.dart';
+import '../modules/member/bindings/member_binding.dart';
+import '../modules/member/views/loginmember_view.dart';
+import '../modules/member/views/premiumform_view.dart';
 
 part 'app_routes.dart';
 
@@ -28,25 +27,32 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.PREMIUMFORM,
-      page: () => const PremiumformView(),
-      binding: PremiumformBinding(),
-    ),
-    GetPage(
       name: _Paths.FOOD_DETAIL,
       page: () => const FoodDetailView(),
       binding: FoodDetailBinding(),
     ),
     GetPage(
-      name: _Paths.LOGIN,
-      page: () => const LoginView(),
-      binding: LoginBinding(),
+      name: _Paths.LOGINMEMBER,
+      page: () => const LoginMemberView(),
+      binding: MemberBinding(),
     ),
     GetPage(
-        name: _Paths.ADMIN,
-        page: () => const AdminView(),
-        binding: AdminBinding(),
-        middlewares: [AuthAdminMiddleware()]),
+      name: _Paths.MEMBER,
+      page: () => const MemberView(),
+      binding: MemberBinding(),
+      // middlewares: [AuthMemberMiddleware()]
+    ),
+    GetPage(
+      name: _Paths.PREMIUMFORM,
+      page: () => const PremiumformView(),
+      binding: MemberBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN,
+      page: () => const AdminView(),
+      binding: AdminBinding(),
+      // middlewares: [AuthAdminMiddleware()]
+    ),
     GetPage(
       name: _Paths.CHOOSELOGIN,
       page: () => const ChooseLogin(),

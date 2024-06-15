@@ -3,16 +3,25 @@ import 'package:foodrecipeapp/app/widgets/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../controllers/login_controller.dart';
+import '../../../routes/app_pages.dart';
+import '../controllers/member_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class LoginMemberView extends GetView<MemberController> {
+  const LoginMemberView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final LoginController loginController = LoginController();
+
+    // Check if already logged in
+    if (controller.isLoggedIn.value) {
+      // Redirect to admin page
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Get.offNamed(Routes.MEMBER);
+      });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -78,7 +87,7 @@ class LoginView extends GetView<LoginController> {
                   onPressed: () {
                     String username = usernameController.text.trim();
                     String password = passwordController.text.trim();
-                    loginController.loginUser(context, username, password);
+                    controller.loginMember(username, password);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: hijauSage,
@@ -100,10 +109,10 @@ class LoginView extends GetView<LoginController> {
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  // Implement navigation to registration page if needed
+                  Get.offNamed(Routes.PREMIUMFORM);
                 },
                 child: Text(
-                  "Don't have an account? Sign Up",
+                  "Mau Jadi Member? KLIK DISINI!",
                   style: GoogleFonts.poppins(
                     color: Colors.teal,
                     fontSize: 16,

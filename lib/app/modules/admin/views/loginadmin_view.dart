@@ -13,7 +13,7 @@ class LoginAdminView extends GetView<AdminController> {
   Widget build(BuildContext context) {
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-     // Check if already logged in
+    // Check if already logged in
     if (controller.isLoggedIn.value) {
       // Redirect to admin page
       WidgetsBinding.instance?.addPostFrameCallback((_) {
@@ -62,7 +62,7 @@ class LoginAdminView extends GetView<AdminController> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                keyboardType: TextInputType.emailAddress,
+                // keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 20),
               TextField(

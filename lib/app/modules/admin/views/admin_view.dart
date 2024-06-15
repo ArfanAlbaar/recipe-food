@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/admin_controller.dart';
 
 class AdminView extends GetView<AdminController> {
@@ -13,6 +14,13 @@ class AdminView extends GetView<AdminController> {
 
   @override
   Widget build(BuildContext context) {
+    // Check if already logged in
+    if (!controller.isLoggedIn.value) {
+      // Redirect to admin page
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Get.offNamed(Routes.HOME);
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(

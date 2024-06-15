@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:foodrecipeapp/app/modules/member/controllers/member_controller.dart';
 import 'package:foodrecipeapp/app/widgets/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controllers/premiumform_controller.dart';
 
-class PremiumformView extends GetView<PremiumformController> {
+import '../../../routes/app_pages.dart';
+import '../../admin/controllers/admin_controller.dart';
+
+class PremiumformView extends GetView<MemberController> {
   const PremiumformView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    final TextEditingController usernameController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController phoneNumberController = TextEditingController();
 
+    Get.lazyPut<AdminController>(
+      () => AdminController(),
+    );
+    final AdminController adminController = Get.find();
+
+    // Check if already logged in
+    if (controller.isLoggedIn.value) {
+      // Redirect to member page
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Get.offNamed(Routes.MEMBER);
+      });
+    } else if (adminController.isLoggedIn.value) {
+      // Redirect to member page
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Get.offNamed(Routes.MEMBER);
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: hijauSage,
@@ -46,9 +70,9 @@ class PremiumformView extends GetView<PremiumformController> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: controller.firstNameController,
+                      controller: usernameController,
                       decoration: InputDecoration(
-                        labelText: 'Nama Depan',
+                        labelText: 'Username',
                         labelStyle: GoogleFonts.poppins(),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -57,16 +81,16 @@ class PremiumformView extends GetView<PremiumformController> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Nama Depan tidak boleh kosong';
+                          return 'Username tidak boleh kosong';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: controller.lastNameController,
+                      controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'Nama Belakang',
+                        labelText: 'Nama Anda',
                         labelStyle: GoogleFonts.poppins(),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -75,16 +99,17 @@ class PremiumformView extends GetView<PremiumformController> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Nama Belakang tidak boleh kosong';
+                          return 'Nama tidak boleh kosong';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: controller.emailController,
+                      controller: passwordController,
+                      obscureText: true,
                       decoration: InputDecoration(
-                        labelText: 'Email',
+                        labelText: 'Password',
                         labelStyle: GoogleFonts.poppins(),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -93,14 +118,14 @@ class PremiumformView extends GetView<PremiumformController> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Email tidak boleh kosong';
+                          return 'Password tidak boleh kosong';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: controller.phoneController,
+                      controller: phoneNumberController,
                       decoration: InputDecoration(
                         labelText: 'Telepon',
                         labelStyle: GoogleFonts.poppins(),
@@ -111,7 +136,7 @@ class PremiumformView extends GetView<PremiumformController> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Telepon tidak boleh kosong';
+                          return 'Nomor Telepon tidak boleh kosong';
                         }
                         return null;
                       },
@@ -122,6 +147,13 @@ class PremiumformView extends GetView<PremiumformController> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
+                            String username = usernameController.text.trim();
+                            String name = nameController.text.trim();
+                            String password = passwordController.text.trim();
+                            String phoneNumber =
+                                phoneNumberController.text.trim();
+                            controller.registerMember(
+                                username, name, password, phoneNumber);
                             if (formKey.currentState!.validate()) {
                               Get.snackbar(
                                 "Berhasil",
@@ -129,10 +161,10 @@ class PremiumformView extends GetView<PremiumformController> {
                                 backgroundColor: bgColor,
                                 colorText: hijauSage,
                               );
-                              controller.firstNameController.clear();
-                              controller.lastNameController.clear();
-                              controller.emailController.clear();
-                              controller.phoneController.clear();
+                              usernameController.clear();
+                              nameController.clear();
+                              passwordController.clear();
+                              phoneNumberController.clear();
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -149,7 +181,8 @@ class PremiumformView extends GetView<PremiumformController> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.back();
+                            Get.offNamed(
+                                Routes.CHOOSELOGIN); //ARAHKAN KE PEMBAYARAN
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: hijauSage,

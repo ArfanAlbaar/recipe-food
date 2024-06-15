@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:foodrecipeapp/app/modules/admin/controllers/admin_controller.dart';
-import 'package:foodrecipeapp/app/modules/home/controllers/home_controller.dart';
+import 'package:foodrecipeapp/app/modules/admin/views/addfood_view.dart';
 import 'package:foodrecipeapp/app/modules/member/controllers/member_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../admin/controllers/admin_controller.dart';
 
-class ChooseLogin extends GetView<HomeController> {
-  const ChooseLogin({
-    super.key,
-  });
+class MemberView extends GetView<MemberController> {
+  const MemberView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +17,16 @@ class ChooseLogin extends GetView<HomeController> {
       () => AdminController(),
     );
     final AdminController adminController = Get.find();
-    Get.lazyPut<MemberController>(
-      () => MemberController(),
-    );
-    final MemberController memberController = Get.find();
+
+    bool checkMember = controller.isLoggedIn.value;
 
     // Check if already logged in
     if (adminController.isLoggedIn.value) {
       // Redirect to admin page
       WidgetsBinding.instance?.addPostFrameCallback((_) {
-        Get.offNamed(Routes.ADMIN);
+        Get.offNamed(Routes.MEMBER);
       });
-    } else if (memberController.isLoggedIn.value) {
+    } else if (checkMember) {
       // Redirect to member page
       WidgetsBinding.instance?.addPostFrameCallback((_) {
         Get.offNamed(Routes.MEMBER);
@@ -38,41 +35,45 @@ class ChooseLogin extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Admin Panel',
+          'MEMBER PREMIUM',
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.teal,
+        actions: checkMember
+            ? [
+                IconButton(
+                    onPressed: () {
+                      controller.logoutMember();
+                    },
+                    icon: const Icon(Iconsax.logout5))
+              ]
+            : null,
       ),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AdminButton(
-                label: 'Login Admin',
-                onPressed: () {
-                  Get.offAllNamed(Routes.LOGINADMIN);
-                },
-              ),
-              const SizedBox(height: 20),
-              AdminButton(
-                label: 'Login Member',
-                onPressed: () {
-                  Get.offAllNamed(Routes.LOGINMEMBER);
-                },
-              ),
-            ],
-          )),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MemberButton(
+              label: 'DOWNLOAD RESEP RAHASIA',
+              onPressed: () {
+                Get.to(() => const AdminAddFood()); //DOWNLOAD PDF RECIPE
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class AdminButton extends StatelessWidget {
+class MemberButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
-  const AdminButton({super.key, required this.label, required this.onPressed});
+  const MemberButton({Key? key, required this.label, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
