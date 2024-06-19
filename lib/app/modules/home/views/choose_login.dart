@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodrecipeapp/app/modules/admin/controllers/admin_controller.dart';
-import 'package:foodrecipeapp/app/modules/home/controllers/home_controller.dart';
+import 'package:foodrecipeapp/app/modules/home/controllers/recipe_controller.dart';
 import 'package:foodrecipeapp/app/modules/member/controllers/member_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../routes/app_pages.dart';
 
-class ChooseLogin extends GetView<HomeController> {
+class ChooseLogin extends GetView<RecipeController> {
   const ChooseLogin({
     super.key,
   });
