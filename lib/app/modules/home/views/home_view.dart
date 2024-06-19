@@ -76,6 +76,7 @@ class HomeView extends GetView<RecipeController> {
                   ),
                 ),
                 const TableAnggota(),
+                SizedBox(height: 20),
               ],
             ),
           ),

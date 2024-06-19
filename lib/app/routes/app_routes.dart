@@ -5,7 +5,7 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const PREMIUMFORM = _Paths.PREMIUMFORM;
-  static const FOOD_DETAIL = _Paths.FOOD_DETAIL;
+  static const FOOD_DETAIL = _Paths.RECIPE_DETAIL;
   static const LOGINMEMBER = _Paths.LOGINMEMBER;
   static const MEMBER = _Paths.MEMBER;
   static const ADMIN = _Paths.ADMIN;
@@ -17,7 +17,7 @@ abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const PREMIUMFORM = '/premiumform';
-  static const FOOD_DETAIL = '/food-detail';
+  static const RECIPE_DETAIL = '/recipe-detail';
   static const LOGINMEMBER = '/login-member';
   static const MEMBER = '/member';
   static const ADMIN = '/admin';

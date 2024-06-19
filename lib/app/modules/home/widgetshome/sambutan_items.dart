@@ -19,7 +19,7 @@ class Sambutan extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            "Mau masak apa\nKamu hari ini ?",
+            "Mau masak apa\nhari ini ?",
             style: GoogleFonts.poppins(
               fontSize: 30,
               height: 1,

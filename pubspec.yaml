@@ -16,7 +16,7 @@ dependencies:
   google_fonts: 6.1.0
   iconsax: 0.0.8
   pdf: ^3.10.8
-  # printing: ^5.12.0
+  printing: ^5.12.0
   flutter_svg: 2.0.10+1 # New dependency added
   http: ^1.2.1
   logger: ^2.3.0

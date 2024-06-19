@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 
 import '../modules/admin/bindings/admin_binding.dart';
 import '../modules/admin/views/admin_view.dart';
-import '../modules/foodDetail/bindings/food_detail_binding.dart';
-import '../modules/foodDetail/views/food_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/member/bindings/member_binding.dart';
 import '../modules/member/views/loginmember_view.dart';
 import '../modules/member/views/premiumform_view.dart';
+import '../modules/recipeDetail/bindings/recipe_detail_binding.dart';
+import '../modules/recipeDetail/views/recipe_detail_view.dart';
 
 part 'app_routes.dart';
 
@@ -27,9 +27,11 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.FOOD_DETAIL,
-      page: () => const FoodDetailView(),
-      binding: FoodDetailBinding(),
+      name: _Paths.RECIPE_DETAIL,
+      page: () => RecipeDetailView(
+        recipeId: 0,
+      ),
+      binding: RecipeDetailBinding(),
     ),
     GetPage(
       name: _Paths.LOGINMEMBER,

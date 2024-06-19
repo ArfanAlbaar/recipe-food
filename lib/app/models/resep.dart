@@ -14,6 +14,7 @@ class Resep {
   String instructions;
   String category;
   bool favorite;
+  String imgLink;
 
   Resep({
     required this.recipeName,
@@ -21,15 +22,19 @@ class Resep {
     required this.instructions,
     required this.category,
     required this.favorite,
+    required this.imgLink,
   });
 
-  factory Resep.fromJson(Map<String, dynamic> json) => Resep(
-        recipeName: json["recipeName"],
-        ingredients: json["ingredients"],
-        instructions: json["instructions"],
-        category: json["category"],
-        favorite: json["favorite"],
-      );
+  factory Resep.fromJson(Map<String, dynamic> json) {
+    return Resep(
+      recipeName: json["recipeName"],
+      ingredients: json["ingredients"],
+      instructions: json["instructions"],
+      category: json["category"],
+      favorite: json["favorite"],
+      imgLink: json["imgLink"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "recipeName": recipeName,
@@ -37,5 +42,6 @@ class Resep {
         "instructions": instructions,
         "category": category,
         "favorite": favorite,
+        "imgLink": imgLink,
       };
 }

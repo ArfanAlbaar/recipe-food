@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodrecipeapp/app/modules/recipeDetail/views/recipe_detail_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -56,9 +57,11 @@ class ListRecipes extends StatelessWidget {
                 return Row(
                   children: List.generate(
                     recipes.length,
-                    (index) => GestureDetector(
+                    (id) => GestureDetector(
                       onTap: () {
-                        // Get.to(() => FoodDetailView(recipe: recipes[index]));
+                        Get.to(
+                          () => RecipeDetailView(recipeId: recipes[id]['id']),
+                        );
                       },
                       child: Container(
                         margin: const EdgeInsets.only(right: 20),
@@ -69,35 +72,42 @@ class ListRecipes extends StatelessWidget {
                         ),
                         width: 200, // Width of each recipe card
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Image.network(recipes[id]['imgLink'],
+                                height: 100,
+                                width: double.infinity,
+                                fit: BoxFit.cover),
+                            SizedBox(height: 8),
                             Text(
-                              recipes[index]['recipeName'],
+                              recipes[id]['recipeName'],
+                              textAlign: TextAlign
+                                  .center, // Align text center horizontally
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              'Ingredients: ${recipes[index]['ingredients']}',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                              ),
-                              maxLines: 2, // Limit to 2 lines for ingredients
-                              overflow: TextOverflow
-                                  .ellipsis, // Ellipsis for overflow
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              'Instructions: ${recipes[index]['instructions']}',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                              ),
-                              maxLines: 2, // Limit to 2 lines for instructions
-                              overflow: TextOverflow
-                                  .ellipsis, // Ellipsis for overflow
-                            ),
+                            // Text(
+                            //   'Ingredients: ${recipes[id]['ingredients']}',
+                            //   style: GoogleFonts.poppins(
+                            //     fontSize: 14,
+                            //   ),
+                            //   maxLines: 2, // Limit to 2 lines for ingredients
+                            //   overflow: TextOverflow
+                            //       .ellipsis, // Ellipsis for overflow
+                            // ),
+                            // SizedBox(height: 8),
+                            // Text(
+                            //   'Instructions: ${recipes[id]['instructions']}',
+                            //   style: GoogleFonts.poppins(
+                            //     fontSize: 14,
+                            //   ),
+                            //   maxLines: 2, // Limit to 2 lines for instructions
+                            //   overflow: TextOverflow
+                            //       .ellipsis, // Ellipsis for overflow
+                            // ),
                           ],
                         ),
                       ),

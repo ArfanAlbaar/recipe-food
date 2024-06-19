@@ -19,39 +19,14 @@ class RecipeService {
     }
   }
 
-  // static Future<List<Food>> fetchFoods() async {
-  //   final response = await http.get(Uri.parse('$baseUrl/foods'));
-  //   if (response.statusCode == 200) {
-  //     List jsonResponse = json.decode(response.body);
-  //     return jsonResponse.map((food) => Food.fromJson(food)).toList();
-  //   } else {
-  //     throw Exception('Failed to load foods');
-  //   }
-  // }
+  Future<Map<String, dynamic>> getRecipeById(int recipeId) async {
+    final url = Uri.parse('$baseUrl/$recipeId');
+    final response = await http.get(url);
 
-  // Future<void> logout() async {
-  //   final url = Uri.parse('$baseUrl/user/auth/logout');
-  //   final token = StorageService().readToken();
-
-  //   try {
-  //     final response = await http.delete(
-  //       url,
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'API-TOKEN': token!,
-  //       },
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       // Logout berhasil
-  //       print('Logout berhasil');
-  //     } else {
-  //       // Handle error response
-  //       print('Logout gagal dengan status: ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     // Handle network error
-  //     print('Error saat logout: $e');
-  //   }
-  // }
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load recipes');
+    }
+  }
 }
