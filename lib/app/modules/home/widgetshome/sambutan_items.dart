@@ -29,10 +29,10 @@ class Sambutan extends StatelessWidget {
           Spacer(),
           IconButton(
             onPressed: () {
-              Get.offAllNamed(Routes.CHOOSELOGIN);
+              Get.toNamed(Routes.CHOOSELOGIN);
             },
             icon: Icon(
-              Iconsax.notification,
+              Iconsax.user,
             ),
             style: IconButton.styleFrom(
               shape: RoundedRectangleBorder(

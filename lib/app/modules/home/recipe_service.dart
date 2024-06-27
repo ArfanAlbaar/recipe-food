@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RecipeService {
-  static final String baseUrl = "http://localhost:8080/api/recipe";
+  static const String baseUrl = "http://localhost:8080/api/recipe";
 
   // final StorageService _storage = StorageService();
   //LIST
@@ -23,6 +23,7 @@ class RecipeService {
     final url = Uri.parse('$baseUrl/$recipeId');
     final response = await http.get(url);
 
+    print(response.body);
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {

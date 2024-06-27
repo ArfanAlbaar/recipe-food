@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:foodrecipeapp/app/modules/admin/views/addfood_view.dart';
-import 'package:foodrecipeapp/app/modules/admin/views/delete_view.dart';
-import 'package:foodrecipeapp/app/modules/admin/views/editfood_view.dart';
+import 'package:foodrecipeapp/app/modules/admin/views/resep/managementFood_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../widgets/colors.dart';
 import '../controllers/admin_controller.dart';
 
 class AdminView extends GetView<AdminController> {
@@ -17,7 +16,7 @@ class AdminView extends GetView<AdminController> {
     // Check if already logged in
     if (!controller.isLoggedIn.value) {
       // Redirect to admin page
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         Get.offNamed(Routes.HOME);
       });
     }
@@ -28,7 +27,7 @@ class AdminView extends GetView<AdminController> {
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: hijauSage,
         actions: [
           IconButton(
               onPressed: () {
@@ -43,23 +42,30 @@ class AdminView extends GetView<AdminController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AdminButton(
-              label: 'Tambah Data Makanan',
+              label: 'Recipe',
               onPressed: () {
                 Get.to(() => const AdminAddFood());
               },
             ),
             const SizedBox(height: 20),
             AdminButton(
-              label: 'Ubah Data Makanan',
+              label: 'Recipe Premium',
               onPressed: () {
-                Get.to(() => const EditFoodView());
+                // Get.to(() =>  EditFood());
               },
             ),
             const SizedBox(height: 20),
             AdminButton(
-              label: 'Hapus Data Makanan',
+              label: 'Member',
               onPressed: () {
-                Get.to(() => const DeleteFoodView());
+                // Get.to(() => const DeleteFoodView());
+              },
+            ),
+            const SizedBox(height: 20),
+            AdminButton(
+              label: 'Transaction',
+              onPressed: () {
+                // Get.to(() => const DeleteFoodView());
               },
             ),
           ],
@@ -73,6 +79,7 @@ class AdminButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
+  // ignore: use_super_parameters
   const AdminButton({Key? key, required this.label, required this.onPressed})
       : super(key: key);
 
@@ -81,7 +88,7 @@ class AdminButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.teal,
+        backgroundColor: hijauSage,
         padding: const EdgeInsets.symmetric(vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

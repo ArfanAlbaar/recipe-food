@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:foodrecipeapp/app/modules/admin/controllers/admin_controller.dart';
 import 'package:foodrecipeapp/app/modules/home/controllers/recipe_controller.dart';
 import 'package:foodrecipeapp/app/modules/member/controllers/member_controller.dart';
+import 'package:foodrecipeapp/app/widgets/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../routes/app_pages.dart';
 
@@ -42,7 +44,7 @@ class ChooseLogin extends GetView<RecipeController> {
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: hijauSage,
       ),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -52,14 +54,14 @@ class ChooseLogin extends GetView<RecipeController> {
               AdminButton(
                 label: 'Login Admin',
                 onPressed: () {
-                  Get.offAllNamed(Routes.LOGINADMIN);
+                  Get.toNamed(Routes.LOGINADMIN);
                 },
               ),
               const SizedBox(height: 20),
               AdminButton(
                 label: 'Login Member',
                 onPressed: () {
-                  Get.offAllNamed(Routes.LOGINMEMBER);
+                  Get.toNamed(Routes.LOGINMEMBER);
                 },
               ),
             ],
@@ -79,7 +81,7 @@ class AdminButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.teal,
+        backgroundColor: hijauSage,
         padding: const EdgeInsets.symmetric(vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

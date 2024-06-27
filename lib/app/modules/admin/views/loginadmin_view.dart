@@ -30,12 +30,12 @@ class LoginAdminView extends GetView<AdminController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Selamat Datang Sang ADMINISTRATOR ",
+                "Selamat Datang ADMINISTRATOR ",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.teal,
+                  color: hijauSage,
                 ),
               ),
               const SizedBox(height: 10),
@@ -51,14 +51,14 @@ class LoginAdminView extends GetView<AdminController> {
               TextField(
                 controller: usernameController,
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.email, color: Colors.teal),
+                  prefixIcon: const Icon(Icons.email, color: hijauSage),
                   labelText: "Username",
-                  labelStyle: GoogleFonts.poppins(color: Colors.teal),
+                  labelStyle: GoogleFonts.poppins(color: hijauSage),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.teal),
+                    borderSide: const BorderSide(color: hijauSage),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -69,9 +69,9 @@ class LoginAdminView extends GetView<AdminController> {
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock, color: Colors.teal),
+                  prefixIcon: const Icon(Icons.lock, color: hijauSage),
                   labelText: "Password",
-                  labelStyle: GoogleFonts.poppins(color: Colors.teal),
+                  labelStyle: GoogleFonts.poppins(color: hijauSage),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
