@@ -51,6 +51,7 @@ class ListRecipes extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             } else {
               var recipes = controller.getRecipesByCategory(category);
+              print(recipes);
               if (recipes.isEmpty) {
                 return Center(child: Text('No recipes found'));
               } else {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodrecipeapp/app/modules/admin/views/addfood_view.dart';
+import 'package:foodrecipeapp/app/modules/admin/views/resep/managementFood_view.dart';
 import 'package:foodrecipeapp/app/modules/member/controllers/member_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
