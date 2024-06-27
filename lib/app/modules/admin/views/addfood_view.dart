@@ -59,7 +59,7 @@ class AdminAddFood extends GetView<AdminController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const AdminTextField(label: 'Nama Makanan'),
+              const AdminTextField(label: 'Nama Makananaaa'),
               const AdminTextField(label: 'Bahan'),
               const AdminTextField(label: 'Kategori'),
               const SizedBox(height: 20),
